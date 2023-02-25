@@ -26,12 +26,10 @@ class MyDrawer extends StatelessWidget {
             },
             leading: Icon(
               CupertinoIcons.home,
-              color: Colors.black,
             ),
             title: Text(
               "Home",
               textScaleFactor: 1.2,
-              style: TextStyle(color: Colors.black),
             ),
           ),
           ListTile(
@@ -40,12 +38,10 @@ class MyDrawer extends StatelessWidget {
             },
             leading: Icon(
               CupertinoIcons.profile_circled,
-              color: Colors.black,
             ),
             title: Text(
               "Profile",
               textScaleFactor: 1.2,
-              style: TextStyle(color: Colors.black),
             ),
           ),
           ListTile(
@@ -54,12 +50,10 @@ class MyDrawer extends StatelessWidget {
             },
             leading: Icon(
               CupertinoIcons.chat_bubble,
-              color: Colors.black,
             ),
             title: Text(
               "Support",
               textScaleFactor: 1.2,
-              style: TextStyle(color: Colors.black),
             ),
           ),
         ],
