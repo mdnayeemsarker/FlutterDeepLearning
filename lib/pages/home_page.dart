@@ -54,6 +54,9 @@ class _HomePageState extends State<HomePage> {
                 itemCount: ProductsModel.items.length,
                 itemBuilder: (context, index) {
                   final product = ProductsModel.items[index];
+                  String resultText = (product.description.length < 30)
+                      ? product.description
+                      : product.description.substring(0, 30);
                   return Card(
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
@@ -64,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                         product.thumbnail,
                         // height: 200,
                       ),
-                      footer: Text(product.description),
+                      footer: Text(resultText),
                       // item: dummyList[index],
                     ),
                   );
