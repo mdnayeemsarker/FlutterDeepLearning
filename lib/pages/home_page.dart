@@ -45,13 +45,28 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: (ProductsModel.items.isNotEmpty)
-            ? ListView.builder(
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15),
                 // itemCount: dummyList.length,
                 itemCount: ProductsModel.items.length,
                 itemBuilder: (context, index) {
-                  return ItemWidgets(
-                    // item: dummyList[index],
-                    item: ProductsModel.items[index],
+                  final product = ProductsModel.items[index];
+                  return Card(
+                    clipBehavior: Clip.antiAlias,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5)),
+                    child: GridTile(
+                      header: Text(product.title),
+                      child: Image.network(
+                        product.thumbnail,
+                        // height: 200,
+                      ),
+                      footer: Text(product.description),
+                      // item: dummyList[index],
+                    ),
                   );
                 },
               )
