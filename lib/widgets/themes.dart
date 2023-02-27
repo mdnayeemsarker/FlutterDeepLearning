@@ -11,8 +11,9 @@ class MyTheme {
         elevation: 0.0,
         // iconTheme: IconThemeData(color: Colors.black),
       ));
-  static ThemeData darkTheme(BuildContext context) => ThemeData(
-      brightness: Brightness.dark
-            // primarySwatch: Colors.blueGrey
-      );
+  static ThemeData darkTheme(BuildContext context) =>
+      ThemeData(brightness: Brightness.dark
+          // primarySwatch: Colors.blueGrey
+          );
+  static Color creamColor = const Color(0xfff5f5);
 }
