@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_dl/utils/routes.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:flutter_dl/model/products_list.dart';
 import 'package:flutter_dl/widgets/home_widgets/products_list.dart';
 import 'package:flutter_dl/widgets/themes.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../widgets/home_widgets/products_header.dart';
 
@@ -42,6 +45,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // final dummyList = List.generate(5, (index) => ProductsModel.items[0]);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, MyRoutes.cartRoute);
+          },
+          child: Icon(CupertinoIcons.cart)),
       body: SafeArea(
         child: Container(
             padding: Vx.m16,
@@ -59,5 +67,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-

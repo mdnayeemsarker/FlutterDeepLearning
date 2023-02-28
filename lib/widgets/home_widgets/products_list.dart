@@ -1,10 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dl/widgets/home_widgets/product_details.dart';
-import 'package:flutter_dl/widgets/home_widgets/product_image.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_dl/model/products_list.dart';
 import 'package:flutter_dl/pages/home_page.dart';
+import 'package:flutter_dl/widgets/home_widgets/product_details.dart';
+import 'package:flutter_dl/widgets/home_widgets/product_image.dart';
+import 'package:flutter_dl/widgets/themes.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key});
@@ -42,8 +44,8 @@ class ProductItem extends StatelessWidget {
         child: Row(
       children: [
         Hero(
-          tag: Key(product.id.toString()),
-          child: ProductImage(thumbnail: product.thumbnail)),
+            tag: Key(product.id.toString()),
+            child: ProductImage(thumbnail: product.thumbnail)),
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,6 +74,13 @@ class ProductItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "\$${product.price}".text.bold.xl.make(),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: "Add Cart"
+                      .text
+                      .make()
+                      .backgroundColor(MyTheme.creamColor),
+                ),
                 ElevatedButton(
                   onPressed: () {},
                   child: "Buy Now".text.make(),
