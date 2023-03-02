@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_dl/utils/routes.dart';
+// ignore: depend_on_referenced_packages
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:flutter_dl/model/products_list.dart';
+import 'package:flutter_dl/model/product.dart';
+import 'package:flutter_dl/utils/routes.dart';
 import 'package:flutter_dl/widgets/home_widgets/products_list.dart';
-import 'package:flutter_dl/widgets/themes.dart';
 
 import '../widgets/home_widgets/products_header.dart';
 
@@ -60,7 +60,9 @@ class _HomePageState extends State<HomePage> {
                 if (ProductsModel.items.isNotEmpty)
                   ProductList().expand()
                 else
-                  Center(child: CircularProgressIndicator())
+                  Center(
+                    child: CircularProgressIndicator(),
+                  ),
               ],
             )),
       ),

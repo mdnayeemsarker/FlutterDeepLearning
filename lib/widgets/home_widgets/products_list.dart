@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dl/model/cart.dart';
+import 'package:flutter_dl/utils/routes.dart';
+import 'package:flutter_dl/widgets/home_widgets/add_to_cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import 'package:flutter_dl/model/products_list.dart';
-import 'package:flutter_dl/pages/home_page.dart';
+import 'package:flutter_dl/model/product.dart';
 import 'package:flutter_dl/widgets/home_widgets/product_details.dart';
 import 'package:flutter_dl/widgets/home_widgets/product_image.dart';
-import 'package:flutter_dl/widgets/themes.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key});
@@ -17,6 +17,7 @@ class ProductList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: ProductsModel.items.length,
       itemBuilder: (context, index) {
+        // final product = ProductsModel.getByPosition(index);
         final product = ProductsModel.items[index];
         return InkWell(
             onTap: () => {
@@ -24,6 +25,7 @@ class ProductList extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductDetails(product: product),
+                      // ProductDetails(product: ProductsModel.getById(2)), //get Product by id
                     ),
                   )
                 },
@@ -62,34 +64,47 @@ class ProductItem extends StatelessWidget {
                 product.discountPercentage.text.make(),
               ],
             ),
-            // Row(
-            //   children: [
-            //     "***${product.rating}".text.make(),
-            //     product.discountPercentage.text.make(),
-            //   ],
-            // ),
             2.heightBox,
             ButtonBar(
               buttonPadding: EdgeInsets.zero,
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "\$${product.price}".text.bold.xl.make(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: "Add Cart"
-                      .text
-                      .make()
-                      .backgroundColor(MyTheme.creamColor),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: "Buy Now".text.make(),
-                )
+                AddToCart(product: product),
+                _BuyNow(product: product)
               ],
-            )
+            ).pOnly(right: 8)
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().px(5).py(5);
+  }
+}
+
+class _BuyNow extends StatefulWidget {
+  const _BuyNow({
+    super.key,
+    required this.product,
+  });
+
+  final Item product;
+
+  @override
+  State<_BuyNow> createState() => _BuyNowState();
+}
+
+class _BuyNowState extends State<_BuyNow> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        final _product = ProductsModel();
+        final _cart = CartModel();
+        _cart.product = _product;
+        _cart.add(widget.product);
+        Navigator.pushNamed(context, MyRoutes.cartRoute);
+      },
+      child: "Buy Now".text.make(),
+    );
   }
 }

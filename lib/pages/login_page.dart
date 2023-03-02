@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dl/utils/routes.dart';
+import 'package:flutter_dl/widgets/themes.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -27,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: MyTheme.cardColor,
       child: SingleChildScrollView(
         child: Form(
           key: _formkey,
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 10),
                     Material(
-                      color: Colors.deepOrange,
+                      color: MyTheme.canvasColor,
                       borderRadius:
                           BorderRadius.circular(changeButton ? 50 : 8),
                       child: InkWell(

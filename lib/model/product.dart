@@ -2,33 +2,45 @@
 import 'dart:convert';
 
 class ProductsModel {
-  static List<Item> items = [
-    Item(
-      1,
-      "iPhone 9",
-      "An apple mobile which is nothing like apple",
-      549,
-      12.96,
-      4.69,
-      94,
-      "Apple",
-      "smartphones",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-    )
-  ];
+  // static List<Item> items = [
+  //   Item(
+  //     1,
+  //     "iPhone 9",
+  //     "An apple mobile which is nothing like apple",
+  //     549,
+  //     12.96,
+  //     4.69,
+  //     94,
+  //     "Apple",
+  //     "smartphones",
+  //     "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+  //   )
+  // ];
+
+  static final proModel = ProductsModel._internal();
+  ProductsModel._internal();
+
+  factory ProductsModel() => proModel;
+
+  static List<Item> items = [];
+
+  Item getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {
-  final int id;
-  final String title;
-  final String description;
-  final num price;
-  final num discountPercentage;
-  final num rating;
-  final num stock;
-  final String brand;
-  final String category;
-  final String thumbnail;
+  int id;
+  String title;
+  String description;
+  num price;
+  num discountPercentage;
+  num rating;
+  num stock;
+  String brand;
+  String category;
+  String thumbnail;
 
   Item(
       this.id,
@@ -107,5 +119,4 @@ class Item {
   String toString() {
     return 'Item(id: $id, title: $title, description: $description, price: $price, discountPercentage: $discountPercentage, rating: $rating, stock: $stock, brand: $brand, category: $category, thumbnail: $thumbnail)';
   }
-
 }

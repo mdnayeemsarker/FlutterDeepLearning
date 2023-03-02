@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dl/model/products_list.dart';
+import 'package:flutter_dl/model/product.dart';
+import 'package:flutter_dl/widgets/home_widgets/add_to_cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetails extends StatefulWidget {
   final Item product;
 
   const ProductDetails({super.key, required this.product});
 
+  @override
+  State<ProductDetails> createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,20 +20,17 @@ class ProductDetails extends StatelessWidget {
           buttonPadding: EdgeInsets.zero,
           alignment: MainAxisAlignment.spaceBetween,
           children: [
-            "\$${product.price}".text.bold.xl.make(),
-            ElevatedButton(
-              onPressed: () {},
-              child: "Buy Now".text.make(),
-            )
+            "\$${widget.product.price}".text.bold.xl.make(),
+            AddToCart(product: widget.product)
           ],
-        ).p32(),
+        ).p32().color(context.cardColor),
         appBar: AppBar(),
         body: SafeArea(
             bottom: false,
             child: Column(children: [
-              DetailsImage(product: product),
+              DetailsImage(product: widget.product),
               // Co
-              DetailsBody(product: product),
+              DetailsBody(product: widget.product),
             ])));
   }
 }
@@ -59,7 +62,7 @@ class DetailsBody extends StatelessWidget {
       arcType: VxArcType.CONVEY,
       edge: VxEdge.TOP,
       child: Container(
-        color: Colors.white,
+        color: context.cardColor,
         width: context.screenWidth,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
